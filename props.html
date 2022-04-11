@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function Btn({ text, onClick, fontSize=20, position="relative", width, top}){
+        return  <button 
+        onClick={onClick}
+        style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize,         
+            position,
+            width,
+            top,
+
+        }}>{ text }</button>
+    }
+    // const MemoraizedBtn = React.memo(Btn); 리랜더링하기 싫을때
+    function App() {
+        const [value, setValue] = React.useState("Save changes");
+        const changeValue = () => setValue("Revert Changes");
+      return (
+        <div>
+          <Btn text={value} onClick={changeValue} fontSize={30}/>
+          <Btn text="Continue" position={"fixed"} width={300} top={300}/>
+          <Btn text="New"/>
+          <Btn text="HOHOHO"/>
+        </div>
+      );
+    }
+
+    const root = document.querySelector("#root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
